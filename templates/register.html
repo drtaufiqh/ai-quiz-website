@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Register Akun</h2>
+
+<form method="POST">
+
+    <label>Username</label><br>
+    <input type="text" name="username" required><br><br>
+
+    <label>Password</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Konfirmasi Password</label><br>
+    <input type="password" name="confirm" required><br><br>
+
+    <label>Nickname</label><br>
+    <input type="text" name="nickname" required><br><br>
+
+    <button type="submit">Daftar</button>
+</form>
+
+{% if error %}
+<p style="color:red; margin-top:10px;">{{ error }}</p>
+{% endif %}
+
+{% endblock %}

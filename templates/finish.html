@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Kuis Selesai!</h2>
+
+<p>Skor Akhir Anda: <strong>{{ score }}/10</strong></p>
+
+<a href="/leaderboard"><button>Lihat Leaderboard</button></a>
+<a href="/quiz"><button>Main Lagi</button></a>
+{% endblock %}

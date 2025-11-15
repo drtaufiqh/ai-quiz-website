@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Widget Cuaca</h2>
+
+<form method="POST">
+    <input type="text" name="city" placeholder="Masukkan nama kota" required>
+    <button type="submit">Cari Cuaca</button>
+</form>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+{% if weather %}
+<h3>Perkiraan Cuaca: {{ city }}</h3>
+
+<table border="1" cellpadding="10" style="margin-top:20px;">
+    <tr>
+        <th>Tanggal</th>
+        <th>Hari</th>
+        <th>Suhu Siang</th>
+        <th>Suhu Malam</th>
+    </tr>
+
+    {% for w in weather %}
+    <tr>
+        <td>{{ w.date }}</td>
+        <td>{{ w.day }}</td>
+        <td>{{ w.temp_day }}°C</td>
+        <td>{{ w.temp_night }}°C</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

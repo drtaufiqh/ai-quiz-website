@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Kuis AI</h2>
+
+<p><b>Total Skor Akun:</b> {{ total_score }}</p>
+<p><b>Skor Sesi Ini:</b> {{ score }}</p>
+<p><b>Soal ke </b> {{ total }}/10</p>
+<hr>
+<h3>{{ q['question'] }}</h3>
+
+<form method="POST">
+    <button name="answer" value="A" {% if result %}disabled{% endif %}>A. {{ q['option_a'] }}</button><br><br>
+    <button name="answer" value="B" {% if result %}disabled{% endif %}>B. {{ q['option_b'] }}</button><br><br>
+    <button name="answer" value="C" {% if result %}disabled{% endif %}>C. {{ q['option_c'] }}</button><br><br>
+    <button name="answer" value="D" {% if result %}disabled{% endif %}>D. {{ q['option_d'] }}</button><br><br>
+</form>
+
+{% if result %}
+    <p style="color:{{ color }};">{{ result }}</p>
+    <a href="/quiz"><button>Next</button></a>
+{% endif %}
+
+{% endblock %}
