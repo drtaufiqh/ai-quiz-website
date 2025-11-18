@@ -198,7 +198,7 @@ def home():
     if request.method == "POST":
         city_name = request.form.get("city")
 
-    # 🔍 Cari koordinat kota
+    # Cari koordinat kota
     geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city_name}&count=1"
     geo_response = requests.get(geo_url).json()
 
@@ -208,7 +208,7 @@ def home():
     lat = geo_response["results"][0]["latitude"]
     lon = geo_response["results"][0]["longitude"]
 
-    # 🌦 Ambil cuaca 3 hari
+    # Ambil cuaca 3 hari
     weather_url = (
         "https://api.open-meteo.com/v1/forecast?"
         f"latitude={lat}&longitude={lon}"
@@ -358,6 +358,13 @@ def quiz():
         final_score = session["score"]
         session.pop("score", None)
         session.pop("question_count", None)
+
+        total_score = conn.execute(
+                "SELECT SUM(score) FROM leaderboard WHERE user_id=?",
+                (session["user_id"],)
+            ).fetchone()[0]
+
+        session['total_score'] = total_score
 
         return redirect(f"/finish?score={final_score}")
 
